@@ -1,1 +1,1572 @@
 
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>50 Brilliant Actors | Dreamy Glass Haven by Amim Ahsan</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            cinzel: ['Cinzel', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          colors: {
+            ashypink: {
+              300: '#FCE7F0',
+              400: '#F8C8DC',
+              500: '#E6B8C4',
+              700: '#A36877',
+              900: '#4A252E',
+            },
+            havenyellow: {
+              300: '#FFF9C4',
+              400: '#FFF176',
+              500: '#FFD700',
+              600: '#F5B041',
+            },
+            glass: {
+              bg: 'rgba(30, 18, 25, 0.65)',
+              border: 'rgba(248, 200, 220, 0.18)',
+              card: 'rgba(45, 27, 36, 0.55)',
+              cardHover: 'rgba(75, 42, 57, 0.7)'
+            }
+          },
+          boxShadow: {
+            'pink-glow': '0 0 30px rgba(248, 200, 220, 0.35)',
+            'yellow-glow': '0 0 30px rgba(255, 215, 0, 0.35)',
+            'green-splash': '0 0 25px rgba(34, 197, 94, 0.8)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Glassmorphism Styles */
+    .glass-haven {
+      background: rgba(28, 16, 24, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(248, 200, 220, 0.2);
+    }
+    
+    .glass-actor-card {
+      background: rgba(45, 27, 36, 0.5);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(248, 200, 220, 0.15);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .glass-actor-card:hover {
+      background: rgba(70, 38, 52, 0.75);
+      border-color: rgba(255, 215, 0, 0.5);
+      transform: translateY(-8px) scale(1.015);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 35px rgba(255, 215, 0, 0.25);
+    }
+
+    .glass-modal-panel {
+      background: rgba(18, 10, 15, 0.92);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border: 1px solid rgba(248, 200, 220, 0.25);
+    }
+
+    /* Floating Petals Ambient */
+    @keyframes petalFloat {
+      0% { transform: translateY(0px) rotate(0deg) translateX(0px); opacity: 0.8; }
+      50% { transform: translateY(-30px) rotate(180deg) translateX(15px); opacity: 1; }
+      100% { transform: translateY(0px) rotate(360deg) translateX(0px); opacity: 0.8; }
+    }
+    .floating-petal {
+      animation: petalFloat 10s infinite ease-in-out;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 9px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(20, 10, 15, 0.95);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #F8C8DC 0%, #FFD700 100%);
+      border-radius: 6px;
+    }
+
+    /* Canvas Layer for Pipilika/Mice & Splatter */
+    #interactiveCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: auto;
+      z-index: 30;
+    }
+
+    .non-interactive-bg {
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen relative overflow-x-hidden selection:bg-havenyellow-500 selection:text-slate-950">
+
+  <!-- Interactive Canvas Overlay (Pipilika / Running Mice / Green Blood Splatter) -->
+  <canvas id="interactiveCanvas"></canvas>
+
+  <!-- Floating Ambient Orbs (Pink & Yellow Haven) -->
+  <div class="fixed top-0 left-1/4 w-[600px] h-[600px] bg-ashypink-400/20 rounded-full blur-[150px] pointer-events-none floating-petal"></div>
+  <div class="fixed top-1/2 right-10 w-[650px] h-[650px] bg-havenyellow-500/15 rounded-full blur-[160px] pointer-events-none floating-petal" style="animation-delay: -4s;"></div>
+  <div class="fixed bottom-10 left-10 w-[500px] h-[500px] bg-ashypink-700/20 rounded-full blur-[140px] pointer-events-none floating-petal" style="animation-delay: -7s;"></div>
+
+  <!-- Main Container -->
+  <div class="relative z-10">
+
+    <!-- Top Floating Controller Bar (Feel Mic / Touch Rat Audio & Creature Toggle) -->
+    <div class="sticky top-4 z-40 max-w-7xl mx-auto px-4">
+      <div class="glass-haven rounded-2xl px-5 py-3 flex flex-wrap items-center justify-between gap-4 shadow-pink-glow border border-ashypink-400/30">
+        
+        <!-- Left: Branding -->
+        <div class="flex items-center gap-3">
+          <span class="w-3.5 h-3.5 rounded-full bg-havenyellow-500 animate-ping"></span>
+          <span class="font-cinzel text-xs sm:text-sm font-extrabold tracking-widest text-havenyellow-400 uppercase">
+            God - Feature By Amim Ahsan
+          </span>
+        </div>
+
+        <!-- Middle: Tactile Control Controls -->
+        <div class="flex items-center gap-3 text-xs sm:text-sm">
+          <button id="toggleAudioBtn" onclick="toggleAudio()" class="px-3.5 py-2 rounded-xl bg-slate-900/80 hover:bg-ashypink-900/60 border border-ashypink-400/40 text-ashypink-300 transition-all flex items-center gap-2">
+            <i class="fa-solid fa-volume-xmark text-havenyellow-400" id="audioIcon"></i>
+            <span id="audioStatusText">Feel Mic: OFF</span>
+          </button>
+
+          <button id="toggleCreaturesBtn" onclick="toggleCreatureType()" class="px-3.5 py-2 rounded-xl bg-slate-900/80 hover:bg-ashypink-900/60 border border-ashypink-400/40 text-ashypink-300 transition-all flex items-center gap-2">
+            <i class="fa-solid fa-[#bug] text-green-400" id="creatureIcon"></i>
+            <span id="creatureTypeText">Touch: Running Pipilikas (Ants)</span>
+          </button>
+
+          <button onclick="spawnMoreCreatures(5)" class="px-3 py-2 rounded-xl bg-havenyellow-500 hover:bg-havenyellow-600 text-slate-950 font-bold transition-all shadow-yellow-glow">
+            + Spawn 5
+          </button>
+        </div>
+
+        <!-- Right: Screen Splatter Stats -->
+        <div class="text-xs text-ashypink-300 font-mono flex items-center gap-2">
+          <i class="fa-solid fa-skull-crossbones text-green-400"></i>
+          <span>Vanquished: <strong id="splatterCount" class="text-havenyellow-400 font-bold text-sm">0</strong></span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Header & Hero Section -->
+    <header class="pt-10 pb-6 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
+      
+      <div class="inline-flex items-center gap-2 px-6 py-2 rounded-full glass-haven text-ashypink-300 text-xs sm:text-sm font-semibold tracking-widest uppercase mb-6 border border-ashypink-400/30 shadow-pink-glow">
+        <i class="fa-solid fa-crown text-havenyellow-400"></i>
+        <span>Dreamy Ashy Pink & Radiant Yellow Haven</span>
+        <i class="fa-solid fa-sparkles text-havenyellow-400"></i>
+      </div>
+
+      <h1 class="font-cinzel text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-4">
+        <span class="bg-gradient-to-r from-ashypink-300 via-ashypink-400 to-havenyellow-400 bg-clip-text text-transparent">
+          50 BRILLIANT ACTORS
+        </span>
+        <br />
+        <span class="text-slate-200 text-2xl sm:text-4xl md:text-5xl font-serif italic font-normal">
+          Billionaire Empires & Cinematic Queens of Indian Cinema
+        </span>
+      </h1>
+
+      <p class="max-w-4xl mx-auto text-slate-300 text-sm sm:text-base md:text-lg font-light leading-relaxed mb-8">
+        Celebrating 50 ultimate visionaries. Exploring their financial empires, luxury brands, noble philanthropic foundations, artistic philosophy, and timeless films. Explicitly honoring them as <strong>Actors</strong> of unmatched global stature.
+      </p>
+
+      <!-- Search & Filters Bar -->
+      <div class="max-w-3xl mx-auto glass-haven p-3 rounded-2xl flex flex-col sm:flex-row gap-3 shadow-2xl border border-ashypink-400/30">
+        <div class="relative flex-grow">
+          <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-ashypink-400"></i>
+          <input type="text" id="searchInput" placeholder="Search 50 actors by name, film, empire, or philosophy..." class="w-full bg-slate-950/70 border border-slate-700/70 text-slate-100 placeholder-slate-400 rounded-xl pl-11 pr-4 py-3 focus:outline-none focus:border-havenyellow-500 transition-colors">
+        </div>
+        <div class="flex flex-wrap gap-2 justify-center">
+          <button onclick="filterCategory('all')" class="filter-btn active-filter px-4 py-3 rounded-xl bg-havenyellow-500 text-slate-950 font-extrabold text-xs sm:text-sm tracking-wider uppercase transition-all shadow-yellow-glow">All (50)</button>
+          <button onclick="filterCategory('Bollywood')" class="filter-btn px-4 py-3 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-slate-200 font-semibold text-xs sm:text-sm transition-all">Bollywood</button>
+          <button onclick="filterCategory('Bengali')" class="filter-btn px-4 py-3 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-slate-200 font-semibold text-xs sm:text-sm transition-all">Bengali</button>
+          <button onclick="filterCategory('South')" class="filter-btn px-4 py-3 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-slate-200 font-semibold text-xs sm:text-sm transition-all">South</button>
+          <button onclick="filterCategory('Classic Icons')" class="filter-btn px-4 py-3 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-slate-200 font-semibold text-xs sm:text-sm transition-all">Classic</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Actor Grid -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div id="actorGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <!-- 50 Actor Cards rendered dynamically -->
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Fullscreen Glass Detail Modal -->
+  <div id="detailModal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-slate-950/85 backdrop-blur-xl flex items-center justify-center p-3 sm:p-6">
+    <div class="glass-modal-panel w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl relative border border-ashypink-400/40 flex flex-col max-h-[92vh]">
+      
+      <!-- Modal Header -->
+      <div class="p-4 sm:p-6 border-b border-slate-800 flex justify-between items-center bg-slate-950/80">
+        <div class="flex items-center gap-3">
+          <i class="fa-solid fa-gem text-havenyellow-400 text-lg"></i>
+          <span class="font-cinzel text-xs sm:text-sm tracking-widest text-ashypink-300 uppercase font-bold">Actor Empire & Deep-Dive Feature</span>
+        </div>
+        <button onclick="closeModal()" class="w-10 h-10 rounded-full bg-slate-900 hover:bg-havenyellow-500 hover:text-slate-950 text-slate-300 flex items-center justify-center transition-all duration-300">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <!-- Modal Content Area -->
+      <div id="modalContent" class="overflow-y-auto p-4 sm:p-8 flex-1 space-y-8">
+        <!-- Injected by JS -->
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-4 bg-slate-950/90 border-t border-slate-800/80 flex justify-between items-center text-xs text-slate-400 font-cinzel">
+        <span class="text-ashypink-400">Dreamy Ashy Pink & Yellow Haven</span>
+        <span class="text-havenyellow-400 font-extrabold">God - Feature By Amim Ahsan</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-20 border-t border-slate-900 bg-slate-950/90 backdrop-blur-lg py-12 px-4 text-center text-slate-400 relative z-10">
+    <div class="max-w-4xl mx-auto space-y-4">
+      <div class="font-cinzel text-xl text-havenyellow-400 font-bold tracking-widest">
+        GOD - FEATURE BY AMIM AHSAN
+      </div>
+      <p class="text-xs sm:text-sm text-slate-400 max-w-2xl mx-auto font-light">
+        A magnificent glass tribute to 50 Brilliant Women Actors of Indian Cinema—redefining art, business empires, philanthropy, and human empowerment.
+      </p>
+      <div class="text-xs text-ashypink-400/80 pt-4 font-mono">
+        Pipilika & Mice Cursor Canvas Engine • Tactical Sound Synthesizer Active
+      </div>
+    </div>
+  </footer>
+
+  <!-- App Script -->
+  <script>
+    // -------------------------------------------------------------
+    // DATA MATRIX: 50 Brilliant Actors (Women Actors of Indian Cinema)
+    // -------------------------------------------------------------
+    const actorsData = [
+      {
+        id: 'sushmita-sen',
+        name: 'Sushmita Sen',
+        category: 'Bollywood',
+        title: 'Universe Sovereign & Regal Trailblazer',
+        origin: 'Miss Universe 1994 / Indian Film Icon',
+        netWorth: '$25 Million (Estimated Empire)',
+        business: 'Renee Films & Production, Luxury Real Estate Holdings, Global Fashion Brands',
+        image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+        quote: "I don't believe in taking right decisions. I take decisions and then make them right.",
+        shortBio: "First Indian to win Miss Universe (1994), Sushmita Sen redefined Indian cinema and womanhood with her poise, fierce independence, single motherhood pioneer spirit, and supreme screen dignity.",
+        philosophy: "Self-sovereignty, courage under fire, and unconditional dignity. Living life without seeking permission from societal norms.",
+        philanthropy: "Founder of 'I Am Foundation' supporting girl-child education, cancer care, and single-mother legal assistance.",
+        movies: ["Aarya (2020-2024)", "Main Hoon Na (2004)", "Filhaal... (2002)", "Biwi No.1 (1999)"]
+      },
+      {
+        id: 'katrina-kaif',
+        name: 'Katrina Kaif',
+        category: 'Bollywood',
+        title: 'Beauty Empire Mogul & Starlight Empress',
+        origin: 'Bollywood Super-A-Lister',
+        netWorth: '$35 Million / Beauty Empire Founder',
+        business: 'Kay Beauty (Multimillion-Dollar Cosmetics Brand), Real Estate & Global Endorsements',
+        image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80',
+        quote: "Hard work, discipline, and constant self-reinvention will always outshine temporary talent.",
+        shortBio: "Transformed from an international outsider into one of Bollywood's highest-paid, most formidable superstars and business moguls with Kay Beauty.",
+        philosophy: "Relentless discipline, privacy in personal affairs, and total immersion in perfection.",
+        philanthropy: "Supports Claretian Mercy Home funding schools for underprivileged girls in rural India.",
+        movies: ["Tiger Zinda Hai (2017)", "Zero (2018)", "Namastey London (2007)", "Zindagi Na Milegi Dobara (2011)"]
+      },
+      {
+        id: 'arpita-chatterjee',
+        name: 'Arpita Chatterjee',
+        category: 'Bengali',
+        title: 'Bengal Virtuoso & Intellectual Muse',
+        origin: 'Bengali Cinema / National Acclaim',
+        netWorth: '$5 Million Venture Capitalist',
+        business: 'Media Production & Regional Arts Investment Funds',
+        image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800&q=80',
+        quote: "Art must reflect the subtle depths of human silence, not just the volume of words.",
+        shortBio: "Renowned for ethereal beauty and intense dramatic depth, Arpita is a powerhouse in Bengali art house and parallel cinema.",
+        philosophy: "Authenticity over commercial hype; nurturing classical literature and theatrical depth.",
+        philanthropy: "Patron of Bengal's classical theatre preservation and mental health wellness drives for artists.",
+        movies: ["Utsab (2000)", "Abyakto (2020)", "Bohomaan (2019)", "Dutta Vs Dutta (2012)"]
+      },
+      {
+        id: 'srabanti-chatterjee',
+        name: 'Srabanti Chatterjee',
+        category: 'Bengali',
+        title: 'Enchantress of Tollywood',
+        origin: 'Bengali Box Office Queen',
+        netWorth: '$4 Million Media Icon',
+        business: 'Boutique Fashion Outlets & Cinema Event Production',
+        image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80',
+        quote: "Smiles are my armor. No matter how tough the storm, love and screen energy win.",
+        shortBio: "Starting as a child artist and rising to undisputed queen of mainstream Bengali cinema with two decades of box office blockbusters.",
+        philosophy: "Unfiltered joy, warmth, and rising stronger from every personal trial.",
+        philanthropy: "Supports child care NGOs and women empowerment initiatives in Kolkata.",
+        movies: ["Champion (2003)", "Sedin Dekha Hoyechilo (2010)", "Wanted (2010)", "Aparajito (2022)"]
+      },
+      {
+        id: 'raima-sen',
+        name: 'Raima Sen',
+        category: 'Bengali',
+        title: 'Mystical Royal & Indie Aristocrat',
+        origin: 'Bengali & Hindi Cinema Royalty',
+        netWorth: '$8 Million Cultural Legacy',
+        business: 'Royal Heritage Real Estate & Textile Brand Collaborations',
+        image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80',
+        quote: "Heritage gives you roots, but artistic choices define your personal soul.",
+        shortBio: "Granddaughter of Suchitra Sen and daughter of Moon Moon Sen, Raima carved her distinct legacy as queen of independent parallel cinema.",
+        philosophy: "Quiet confidence, mystery, and choosing rich literature over formulaic trends.",
+        philanthropy: "Stray animal shelter patron and promoter of traditional Indian handloom weavers.",
+        movies: ["Chokher Bali (2003)", "Parineeta (2005)", "Noukadubi (2011)", "The Bastard Child (2013)"]
+      },
+      {
+        id: 'tanushree-dutta',
+        name: 'Tanushree Dutta',
+        category: 'Bollywood',
+        title: 'Fearless Catalyst & Truth Luminary',
+        origin: 'Femina Miss India Universe 2004',
+        netWorth: '$3 Million Independent Voice',
+        business: 'Spiritual Writing, Global Keynote Engagements & Media Consultancy',
+        image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+        quote: "Truth may be isolated for a season, but its eventual resonance reshapes history.",
+        shortBio: "Miss India Universe 2004 and Bollywood lead who sparked India's #MeToo movement, demanding systemic workplace safety for women.",
+        philosophy: "Uncompromising integrity, spiritual awakening, and standing for truth against all odds.",
+        philanthropy: "Advocates for legal reform for workplace harassment victims and trauma recovery.",
+        movies: ["Aashiq Banaya Aapne (2005)", "Chocolate (2005)", "Dhol (2007)", "Risk (2007)"]
+      },
+      {
+        id: 'shilpa-shetty',
+        name: 'Shilpa Shetty',
+        category: 'Bollywood',
+        title: 'Ageless Siren & Wellness Empire Queen',
+        origin: 'Bollywood Legend / Global TV Icon',
+        netWorth: '$18 Million Wellness Mogul',
+        business: 'Shilpa Shetty App, Bastian Restaurant Chain, DreamSS Apparel',
+        image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80',
+        quote: "Mindful living, holistic yoga, and constant positivity keep the soul forever young.",
+        shortBio: "Three decades of blockbuster stardom, iconic dance classics, Celebrity Big Brother global victory, and a sprawling wellness empire.",
+        philosophy: "Holistic health, grace under fire, and entrepreneurial positivity.",
+        philanthropy: "Active donor to orphanages and global anti-bullying awareness movements.",
+        movies: ["Dhadkan (2000)", "Life in a... Metro (2007)", "Phir Milenge (2004)", "Baazigar (1993)"]
+      },
+      {
+        id: 'kajal-aggarwal',
+        name: 'Kajal Aggarwal',
+        category: 'South',
+        title: 'Jewel of South & Pan-Indian Icon',
+        origin: 'Telugu, Tamil & Hindi Cinema Star',
+        netWorth: '$15 Million Brand Dynamo',
+        business: 'Kajal By PCR Jewelry Brand, Real Estate & Tech Startups',
+        image: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80',
+        quote: "Versatility is an actor's true currency. Learn every language, respect every culture.",
+        shortBio: "With over 50 films across Telugu, Tamil, and Hindi cinema, Kajal is a commercial titan and first South Indian female actor with a wax statue at Madame Tussauds.",
+        philosophy: "Cross-cultural fluidity, humble devotion to craft, and family grounding.",
+        philanthropy: "Sponsors pediatric surgeries and education for underprivileged youth in South India.",
+        movies: ["Magadheera (2009)", "Singham (2011)", "Thuppakki (2012)", "Awe! (2018)"]
+      },
+      {
+        id: 'parno-mitra',
+        name: 'Parno Mitra',
+        category: 'Bengali',
+        title: 'Neo-Wave Rebel & Raw Powerhouse',
+        origin: 'Bengali Cinema & Television',
+        netWorth: '$3 Million Artiste',
+        business: 'Independent Media Projects & Public Policy Engagements',
+        image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+        quote: "Real beauty is raw, unfiltered, and unafraid to show its scars.",
+        shortBio: "Pioneer of Bengali neo-realist cinema known for gritty, naturalistic performances and fearless intellectual voice.",
+        philosophy: "Raw honesty, rejecting artificial standards, and clinical mental health openness.",
+        philanthropy: "Advocates for therapy normalization and female rights in regional media.",
+        movies: ["Ranjana Ami Ar Ashbona (2011)", "Chotushkone (2014)", "Apur Panchali (2013)", "Rajkahini (2015)"]
+      },
+      {
+        id: 'aishwarya-rai',
+        name: 'Aishwarya Rai Bachchan',
+        category: 'Bollywood',
+        title: 'Global Sovereign & Eternal Muse',
+        origin: 'Miss World 1994 / Global Titan',
+        netWorth: '$100 Million Global Empire',
+        business: 'Global Luxury Endorsements (Longines, L\'Oréal), Tech Startups, Real Estate',
+        image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80',
+        quote: "God has given me this life, and I intend to live it with dignity and gratitude.",
+        shortBio: "Hailed globally as the world's most beautiful actor, Miss World 1994, Cannes veteran, and undisputed titan of global Indian cinema.",
+        philosophy: "Regal poise, global dignity, and deep maternal devotion.",
+        philanthropy: "UNAIDS Goodwill Ambassador and Eye Bank Association of India global donor.",
+        movies: ["Devdas (2002)", "Ponniyin Selvan (2022-2023)", "Hum Dil De Chuke Sanam (1999)", "Jodhaa Akbar (2008)"]
+      },
+      // Adding 40 additional brilliant actors to reach 50
+      {
+        id: 'priyanka-chopra',
+        name: 'Priyanka Chopra Jonas',
+        category: 'Bollywood',
+        title: 'Global Megastar & Billionaire Investor',
+        origin: 'Miss World 2000 / Hollywood & Bollywood Titan',
+        netWorth: '$80 Million Global Empire',
+        business: 'Anomolie Haircare, Sona Home, Purple Pebble Pictures, Bumble Investor',
+        image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+        quote: "I want to be limitless. I don't want to be defined by box boundaries.",
+        shortBio: "From Miss World 2000 to dominating Bollywood and becoming a major Hollywood lead and tech investor.",
+        philosophy: "Unstoppable ambition, global representation, and multi-industry conquest.",
+        philanthropy: "UNICEF Goodwill Ambassador for Child Rights and Founder of Priyanka Chopra Foundation.",
+        movies: ["Barfi! (2012)", "Fashion (2008)", "Mary Kom (2014)", "Quantico (2015-2018)"]
+      },
+      {
+        id: 'deepika-padukone',
+        name: 'Deepika Padukone',
+        category: 'Bollywood',
+        title: 'Iconic Sovereign & Wellness Founder',
+        origin: 'Bollywood A-Lister & Global Ambassador',
+        netWorth: '$60 Million Brand Empire',
+        business: '82°E Self-Care Brand, KA Enterprises Investment Portfolio, Live Love Laugh',
+        image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800&q=80',
+        quote: "To live a life that is meaningful and true to yourself is the highest achievement.",
+        shortBio: "One of Indian cinema's highest-paid actors, Louis Vuitton global ambassador, and mental health pioneer.",
+        philosophy: "Vulnerability as strength, emotional authenticity, and wellness innovation.",
+        philanthropy: "Founder of Live Love Laugh Foundation for mental health awareness in India.",
+        movies: ["Padmaavat (2018)", "Piku (2015)", "Chennai Express (2013)", "Cocktail (2012)"]
+      },
+      {
+        id: 'alia-bhatt',
+        name: 'Alia Bhatt',
+        category: 'Bollywood',
+        title: 'Cinematic Dynamo & Eco Mogul',
+        origin: 'National Film Award Winner',
+        netWorth: '$40 Million Business Powerhouse',
+        business: 'Ed-a-Mamma (Sustainable Fashion Brand), Eternal Sunshine Productions',
+        image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80',
+        quote: "Failure is an option, but giving up is not.",
+        shortBio: "Multiple Filmfare and National Award winner with an incredible box-office streak and sustainable business empire.",
+        philosophy: "Continuous learning, artistic versatility, and eco-conscious living.",
+        philanthropy: "Coexist initiative supporting animal welfare and environmental conservation.",
+        movies: ["Gangubai Kathiawadi (2022)", "Raazi (2018)", "Udta Punjab (2016)", "Dear Zindagi (2016)"]
+      },
+      {
+        id: 'madhuri-dixit',
+        name: 'Madhuri Dixit Nene',
+        category: 'Classic Icons',
+        title: 'Dancing Goddess of India',
+        origin: 'Bollywood Cultural Legend',
+        netWorth: '$35 Million Legacy',
+        business: 'Dance With Madhuri EdTech Platform, Production Houses',
+        image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+        quote: "Dance is the hidden language of the soul.",
+        shortBio: "The premier dance icon of Indian cinema, ruling the screen for decades with unmatched grace and expression.",
+        philosophy: "Preserving Indian classical dance arts while empowering global learners through digital tech.",
+        philanthropy: "UNICEF advocate for child protection and animal welfare supporter.",
+        movies: ["Hum Aapke Hain Koun..! (1994)", "Devdas (2002)", "Tezaab (1988)", "Dil To Pagal Hai (1997)"]
+      },
+      {
+        id: 'sridevi',
+        name: 'Sridevi',
+        category: 'Classic Icons',
+        title: 'First Female Superstar of India',
+        origin: 'Pan-Indian Film Legend',
+        netWorth: '$40 Million Eternal Legacy',
+        business: 'Art Heritage, Global Film Rights & Fine Art Painting',
+        image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80',
+        quote: "I am an actor who believes in absolute devotion to the camera.",
+        shortBio: "The undisputed first female superstar of Indian cinema, spanning Tamil, Telugu, Hindi, Malayalam, and Kannada.",
+        philosophy: "Total transformation on camera; quiet humility off screen.",
+        philanthropy: "Supported pediatric healthcare and traditional art restoration across South India.",
+        movies: ["English Vinglish (2012)", "Chandni (1989)", "Sadma (1983)", "Mom (2017)"]
+      },
+      {
+        id: 'rekha',
+        name: 'Rekha',
+        category: 'Classic Icons',
+        title: 'Timeless Enigma & Screen Goddess',
+        origin: 'Indian Cinema Living Legend',
+        netWorth: '$40 Million Personal Empire',
+        business: 'Bespoke Luxury Silk Collections & Real Estate Investments',
+        image: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80',
+        quote: "Life is a continuous transformation of beauty and resilience.",
+        shortBio: "An immortal cinematic force renowned for reinventing her craft, style, and commanding royal screen mystery.",
+        philosophy: "Self-discipline, aesthetic mastery, and unyielding self-love.",
+        philanthropy: "Silent benefactor for women's healthcare and artisan silk weavers.",
+        movies: ["Umrao Jaan (1981)", "Silsila (1981)", "Khoon Bhari Maang (1988)", "Ijaazat (1987)"]
+      },
+      {
+        id: 'tabu',
+        name: 'Tabu',
+        category: 'Bollywood',
+        title: 'Master of Dramatic Art',
+        origin: 'National Award Winner',
+        netWorth: '$12 Million Artistry',
+        business: 'Bespoke Film Project Investments & Literary Adaptations',
+        image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+        quote: "I don't look for conventional heroines; I look for human souls.",
+        shortBio: "Two-time National Award winner celebrated for her profound, fearless performances in international and Indian parallel cinema.",
+        philosophy: "Depth over glamour; honoring truth in complex character studies.",
+        philanthropy: "Supports literacy programs for girls and rural healthcare.",
+        movies: ["Andhadhun (2018)", "Haider (2014)", "Maqbool (2003)", "Astitva (2000)"]
+      },
+      {
+        id: 'nayanthara',
+        name: 'Nayanthara',
+        category: 'South',
+        title: 'Lady Superstar of South India',
+        origin: 'Tamil & Telugu Cinema Queen',
+        netWorth: '$25 Million Business Powerhouse',
+        business: 'The Lip Balm Company, 9SKIN, Rowdy Pictures Production, Chai Waale',
+        image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80',
+        quote: "Let your silence be your success story's loudest voice.",
+        shortBio: "Regarded as the 'Lady Superstar' of South Indian cinema with immense solo box-office command and beauty enterprises.",
+        philosophy: "Letting work speak; maintaining absolute boundary control in media.",
+        philanthropy: "Funds educational trusts for female college students in Tamil Nadu.",
+        movies: ["Aramm (2017)", "Jawan (2023)", "Maya (2015)", "Naanum Rowdy Dhaan (2015)"]
+      },
+      {
+        id: 'samantha',
+        name: 'Samantha Ruth Prabhu',
+        category: 'South',
+        title: 'Resilient Virtuoso & Health Pioneer',
+        origin: 'Telugu & Tamil Superstar',
+        netWorth: '$15 Million Venture Capitalist',
+        business: 'Saaki World Fashion Brand, Ekam Early Learning, Startup Investments',
+        image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80',
+        quote: "Breakdowns are just precursors to monumental breakthroughs.",
+        shortBio: "Critically acclaimed actor, business owner, and fitness pioneer who overcame major autoimmune challenges with inspiring public grit.",
+        philosophy: "Unfiltered resilience, physical and mental empowerment, and enterprise.",
+        philanthropy: "Founder of Pratyusha Support NGO offering medical support to women and children.",
+        movies: ["Oh! Baby (2019)", "Super Deluxe (2019)", "The Family Man 2 (2021)", "Eega (2012)"]
+      },
+      {
+        id: 'anushka-sharma',
+        name: 'Anushka Sharma',
+        category: 'Bollywood',
+        title: 'New-Age Producer & Animal Advocate',
+        origin: 'Bollywood Lead & Producer',
+        netWorth: '$35 Million Media Venture',
+        business: 'Nush Apparel, Clean Slate Filmz (Former Co-founder), Tech Investments',
+        image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+        quote: "I never conform to expectations. I build my own path.",
+        shortBio: "Versatile actor turned pioneer female film producer who backed groundbreaking female-led stories.",
+        philosophy: "Fearless independence, non-conformity, and environmental harmony.",
+        philanthropy: "Dedicated animal rights activist advocating for stray animal sanctuaries.",
+        movies: ["NH10 (2015)", "PK (2014)", "Band Baaja Baaraat (2010)", "Sultan (2016)"]
+      },
+      {
+        id: 'rani-mukerji',
+        name: 'Rani Mukerji',
+        category: 'Bollywood',
+        title: 'Powerhouse Performer & Film Matriarch',
+        origin: 'Multifaceted Bollywood Legend',
+        netWorth: '$25 Million Legacy',
+        business: 'Yash Raj Films Creative & Talent Leadership',
+        image: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80',
+        quote: "An actor must be a chameleon of raw human emotions.",
+        shortBio: "Renowned for her husky voice and dramatic intensity, delivering unforgettable performances across three decades.",
+        philosophy: "Devotion to emotional authenticity and narrative gravitas.",
+        philanthropy: "Supports child education and anti-human trafficking organizations.",
+        movies: ["Black (2005)", "Hichki (2018)", "Mardaani (2014)", "Saathiya (2002)"]
+      },
+      {
+        id: 'vidya-balan',
+        name: 'Vidya Balan',
+        category: 'Bollywood',
+        title: 'Pioneer of Female-Led Cinema',
+        origin: 'National Award Winner',
+        netWorth: '$18 Million Cultural Icon',
+        business: 'Social Impact Campaigns & Regional Cinema Funds',
+        image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+        quote: "I don't fit into boxes; I make the box fit me.",
+        shortBio: "Pioneered the modern wave of female-centric box office cinema without adhering to traditional body or genre constraints.",
+        philosophy: "Embracing body positivity, Indian heritage sarees, and character autonomy.",
+        philanthropy: "Brand ambassador for sanitation and female literacy initiatives across rural India.",
+        movies: ["Kahaani (2012)", "The Dirty Picture (2011)", "Tumhari Sulu (2017)", "Sherni (2021)"]
+      },
+      {
+        id: 'kareena-kapoor',
+        name: 'Kareena Kapoor Khan',
+        category: 'Bollywood',
+        title: 'Style Sovereign & Modern Trendsetter',
+        origin: 'Bollywood Dynasty Royalty',
+        netWorth: '$60 Million Brand Empire',
+        business: 'Quapri Beauty, Radio Shows, Luxury Endorsements & Real Estate',
+        image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80',
+        quote: "Confidence is the only makeup you need to rule the room.",
+        shortBio: "The iconic star of Indian cinema who turned characters like 'Poo' and 'Geet' into timeless cultural phenomena.",
+        philosophy: "Unapologetic self-love, balancing career with motherhood, and timeless glamour.",
+        philanthropy: "UNICEF advocate for girls' education and maternal healthcare.",
+        movies: ["Jab We Met (2007)", "Omkara (2006)", "3 Idiots (2009)", "Jaane Jaan (2023)"]
+      },
+      {
+        id: 'preity-zinta',
+        name: 'Preity Zinta',
+        category: 'Bollywood',
+        title: 'Sports Franchise Owner & Dimpled Dynamo',
+        origin: 'Bollywood Icon & IPL Team Owner',
+        netWorth: '$30 Million Sports & Media Empire',
+        business: 'Punjab Kings IPL Cricket Franchise, PZNZ Media Production',
+        image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80',
+        quote: "Courage isn't the absence of fear; it's action in the face of fear.",
+        shortBio: "Bubbly screen presence turned serious sports enterprise owner and vocal champion for civic responsibility.",
+        philosophy: "Vibrant enthusiasm paired with tough corporate negotiation skills.",
+        philanthropy: "Adopted 34 girls from Rishikesh orphanages providing education and healthcare.",
+        movies: ["Veer-Zaara (2004)", "Kal Ho Naa Ho (2003)", "Dil Se.. (1998)", "Sangharsh (1999)"]
+      },
+      {
+        id: 'juhi-chawla',
+        name: 'Juhi Chawla',
+        category: 'Classic Icons',
+        title: 'Billionaire Entrepreneur & Comedy Queen',
+        origin: 'Miss India 1984 / Bollywood Legend',
+        netWorth: '$500 Million Global Enterprise (Red Chillies & Sports)',
+        business: 'Co-Owner Kolkata Knight Riders (KKR IPL), Red Chillies Entertainment Co-Founder',
+        image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80',
+        quote: "Laughter is the greatest bridge between human hearts.",
+        shortBio: "Beloved comedy and romantic lead who became one of India's wealthiest self-made sports and film studio owners.",
+        philosophy: "Combining warmth with high-stakes sports management and eco-activism.",
+        philanthropy: "Lead activist against 5G/EMF radiation hazards and organic farming campaigner.",
+        movies: ["Qayamat Se Qayamat Tak (1988)", "Darr (1993)", "Hum Hain Rahi Pyar Ke (1993)", "Gulaab Gang (2014)"]
+      },
+      {
+        id: 'dimple-kapadia',
+        name: 'Dimple Kapadia',
+        category: 'Classic Icons',
+        title: 'Screen Titan & Hollywood Crossover',
+        origin: 'National Award Winner',
+        netWorth: '$15 Million Cinematic Legacy',
+        business: 'Luxury Home Candle Brands & Fine Art Collections',
+        image: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80',
+        quote: "Age only deepens the fire inside a true actor.",
+        shortBio: "Debuted in 'Bobby' at 16, reinvented her career with intense dramatic roles and recently starred in Christopher Nolan's 'Tenet'.",
+        philosophy: "Artistic fearlessness and bold reinvention across eras.",
+        philanthropy: "Supports craft preservation and elderly healthcare foundations.",
+        movies: ["Rudaali (1993)", "Bobby (1973)", "Dil Chahta Hai (2001)", "Tenet (2020)"]
+      },
+      {
+        id: 'smita-patil',
+        name: 'Smita Patil',
+        category: 'Classic Icons',
+        title: 'Parallel Cinema Immortal',
+        origin: 'National Award Legend',
+        netWorth: '$10 Million Immortal Legacy',
+        business: 'Cinematic Archive & Social Realism Legacy Trust',
+        image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+        quote: "Cinema must be a mirror to the forgotten working woman.",
+        shortBio: "One of the absolute greatest actors of Indian cinema whose raw intensity redefined feminist parallel cinema in the 1970s and 80s.",
+        philosophy: "Unfiltered socio-political realism and feminist voice.",
+        philanthropy: "Devoted champion of working-class women's rights and rural health.",
+        movies: ["Bhumika (1977)", "Mirch Masala (1987)", "Manthan (1976)", "Arth (1982)"]
+      },
+      {
+        id: 'shabana-azmi',
+        name: 'Shabana Azmi',
+        category: 'Classic Icons',
+        title: 'Five-Time National Award Doyen',
+        origin: 'Parallel & International Film Icon',
+        netWorth: '$15 Million Cultural Influence',
+        business: 'Mijwan Welfare Society Enterprise & Literary Foundations',
+        image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80',
+        quote: "Art should be used as an instrument for social change.",
+        shortBio: "Five-time National Award winner for Best Actor, activist, and parliamentarian who shaped India's artistic conscience.",
+        philosophy: "Using screen power directly for human rights advocacy and social reform.",
+        philanthropy: "Founder of Mijwan Welfare Society empowering rural women through chikankari craft.",
+        movies: ["Ankur (1974)", "Arth (1982)", "Fire (1996)", "Godmother (1999)"]
+      },
+      {
+        id: 'waheeda-rehman',
+        name: 'Waheeda Rehman',
+        category: 'Classic Icons',
+        title: 'Dadasaheb Phalke Honoree & Grace Personified',
+        origin: 'Golden Age Legend of Cinema',
+        netWorth: '$20 Million Historic Heritage',
+        business: 'Breakfast Cereal Brand Pioneer & Photography Fine Arts',
+        image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80',
+        quote: "Dignity is not an act; it is the essence of how you carry your soul.",
+        shortBio: "Recipient of India's highest cinematic honor (Dadasaheb Phalke Award), legendary muse of Guru Dutt.",
+        philosophy: "Understated elegance, quiet determination, and passion for wildlife photography.",
+        philanthropy: "Active donor to education for rural girls and disaster mitigation.",
+        movies: ["Guide (1965)", "Pyaasa (1957)", "Kaagaz Ke Phool (1959)", "Reshma Aur Shera (1971)"]
+      },
+      {
+        id: 'vyjayanthimala',
+        name: 'Vyjayanthimala',
+        category: 'Classic Icons',
+        title: 'First South-To-North Pan-Indian Superstar',
+        origin: 'Bharatanatyam Legend & Cinema Queen',
+        netWorth: '$15 Million Cultural Heritage',
+        business: 'Classical Dance Academies & Heritage Trusts',
+        image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80',
+        quote: "Dance is not separate from life; it is the rhythm of breath.",
+        shortBio: "The first South Indian actor to achieve national superstardom in Hindi cinema, bringing classical dance to the mainstream.",
+        philosophy: "Sacred devotion to classical Indian dance traditions.",
+        philanthropy: "Supports classical dance scholarships for underprivileged dancers.",
+        movies: ["Devdas (1955)", "Gunga Jumna (1961)", "Sangam (1964)", "Jewel Thief (1967)"]
+      },
+      {
+        id: 'hema-malini',
+        name: 'Hema Malini',
+        category: 'Classic Icons',
+        title: 'Dream Girl & Classical Doyen',
+        origin: 'Bollywood Superstar & Parliamentarian',
+        netWorth: '$50 Million Cultural & Political Empire',
+        business: 'Natya Vihar Kalakendra Dance Academy & Political Leadership',
+        image: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80',
+        quote: "Dance keeps me alive; cinema keeps me connected.",
+        shortBio: "Affectionately known as the 'Dream Girl', ruling mainstream Hindi cinema in the 70s and 80s while staying a classical dance exponent.",
+        philosophy: "Balancing artistic classicism with public leadership.",
+        philanthropy: "Promotes classical arts and water conservation projects in Mathura.",
+        movies: ["Sholay (1975)", "Seeta Aur Geeta (1972)", "Dream Girl (1977)", "Baghban (2003)"]
+      },
+      {
+        id: 'sharmila-tagore',
+        name: 'Sharmila Tagore',
+        category: 'Classic Icons',
+        title: 'Royal Grace & Ray’s Muse',
+        origin: 'Satyajit Ray Discovery / Royalty',
+        netWorth: '$25 Million Heritage',
+        business: 'Pataudi Royal Estates & Literary Arts Foundations',
+        image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+        quote: "Grace is remaining serene amidst modern chaos.",
+        shortBio: "Discovered by Satyajit Ray in 'Apur Sansar', she bridged Bengal parallel cinema and mainstream Hindi blockbusters with effortless chic.",
+        philosophy: "Intellectual poise, cross-cultural elegance, and family stewardship.",
+        philanthropy: "Supports eye health foundations and Bengali cultural societies.",
+        movies: ["Apur Sansar (1959)", "Aradhana (1969)", "Nayak (1966)", "Amar Prem (1972)"]
+      },
+      {
+        id: 'jaya-bachchan',
+        name: 'Jaya Bachchan',
+        category: 'Classic Icons',
+        title: 'Naturalist Pioneer & Public Leader',
+        origin: 'FTII Gold Medalist / Parliamentarian',
+        netWorth: '$40 Million Family & Public Trust',
+        business: 'Saraswati Productions & Public Governance',
+        image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80',
+        quote: "Simplicity on camera requires absolute inner honesty.",
+        shortBio: "Broke traditional glamour tropes in the 1970s with realistic middle-class portrayals, winning 9 Filmfare Awards.",
+        philosophy: "Unfiltered realism, intense public service, and protecting family values.",
+        philanthropy: "Parliamentary champion for female safety and senior citizen welfare.",
+        movies: ["Guddi (1971)", "Abhimaan (1973)", "Koshish (1972)", "Hazar Chaurasi Ki Maa (1998)"]
+      },
+      {
+        id: 'konkona-sen-sharma',
+        name: 'Konkona Sen Sharma',
+        category: 'Bengali',
+        title: 'Indie Visionary & Director-Actor',
+        origin: 'Two-Time National Award Winner',
+        netWorth: '$8 Million Creative House',
+        business: 'Independent Film Direction & Screenwriting Ventures',
+        image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80',
+        quote: "I look for stories that question comfortable hypocrisies.",
+        shortBio: "Acclaimed actor-director who seamlessly moves between Bengali art house cinema and Hindi independent hits.",
+        philosophy: "Subtle storytelling, subverting gender stereotypes, and directional precision.",
+        philanthropy: "Supports independent cinema workers and regional literature funds.",
+        movies: ["Mr. and Mrs. Iyer (2002)", "Omkara (2006)", "A Death in the Gunj (2016 Director)", "Page 3 (2005)"]
+      },
+      {
+        id: 'radhika-apte',
+        name: 'Radhika Apte',
+        category: 'Bollywood',
+        title: 'Indie Queen & International Maverick',
+        origin: 'Pan-Indian & Global Streaming Icon',
+        netWorth: '$10 Million Global Actor',
+        business: 'International Co-Productions & Theatre Companies',
+        image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80',
+        quote: "I refuse to be pigeonholed by mainstream expectations.",
+        shortBio: "Known as the face of modern Indian streaming content, celebrated for bold, fearless choices in Marathi, Hindi, English, and Tamil.",
+        philosophy: "Global artistic fluidity and absolute lack of self-censorship in performance.",
+        philanthropy: "Supports experimental theatre groups and female health education.",
+        movies: ["Andhadhun (2018)", "Phobia (2016)", "Parched (2015)", "Sacred Games (2018)"]
+      },
+      {
+        id: 'sobhita-dhulipala',
+        name: 'Sobhita Dhulipala',
+        category: 'South',
+        title: 'Chic Siren & Style Rebel',
+        origin: 'Earthly Beauty & Global Screen Lead',
+        netWorth: '$5 Million Brand Dynamo',
+        business: 'High-Fashion Collaborations & Boutique Investments',
+        image: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80',
+        quote: "Elegance is an intellectual state of mind.",
+        shortBio: "Broke through with 'Made in Heaven' and 'Ponniyin Selvan', fast becoming a global fashion icon and sharp actor.",
+        philosophy: "Sophisticated aesthetic choices, sharp character observation, and independence.",
+        philanthropy: "Supports eco-fashion initiatives and Andhra heritage weavers.",
+        movies: ["Made in Heaven (2019-2023)", "Raman Raghav 2.0 (2016)", "Ponniyin Selvan (2022)", "Major (2022)"]
+      },
+      {
+        id: 'trisha-krishnan',
+        name: 'Trisha Krishnan',
+        category: 'South',
+        title: 'Queen of South & Evergreen Icon',
+        origin: 'Tamil & Telugu Cinema Superstar',
+        netWorth: '$12 Million South Empire',
+        business: 'Real Estate Ventures & Luxury Brand Endorsements',
+        image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+        quote: "Longevity comes when you love the camera and respect your audience.",
+        shortBio: "Over two decades of dominant lead roles in Tamil and Telugu cinema, retaining unmatched star pull.",
+        philosophy: "Quiet grace, enduring professional stamina, and animal welfare.",
+        philanthropy: "UNICEF Celebrity Advocate and PETA animal rescue ambassador.",
+        movies: ["\'96 (2018)", "Ponniyin Selvan (2022-2023)", "Ghilli (2004)", "Vinnaithaandi Varuvaayaa (2010)"]
+      },
+      {
+        id: 'sai-pallavi',
+        name: 'Sai Pallavi',
+        category: 'South',
+        title: 'Natural Virtuoso & Dancing Siren',
+        origin: 'Doctor & South Indian Screen Phenom',
+        netWorth: '$8 Million Organic Icon',
+        business: 'Medical Foundations & Organic Living Endorsements',
+        image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80',
+        quote: "Real confidence is showing your true face without makeup filters.",
+        shortBio: "Qualified doctor who became a screen phenomenon by famously rejecting makeup and cosmetics endorsements.",
+        philosophy: "Unfiltered natural beauty, medical ethics, and dance devotion.",
+        philanthropy: "Provides free medical camps in rural Nilgiris and sponsors girl education.",
+        movies: ["Premam (2015)", "Fidaa (2017)", "Gargi (2022)", "Shyam Singha Roy (2021)"]
+      },
+      {
+        id: 'keerthy-suresh',
+        name: 'Keerthy Suresh',
+        category: 'South',
+        title: 'Mahanati National Award Winner',
+        origin: 'Tamil, Telugu & Malayalam Screen Star',
+        netWorth: '$10 Million Artiste',
+        business: 'Ethical Fashion Line & Production Houses',
+        image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+        quote: "Honor the legends who walked before you by pouring your heart into every scene.",
+        shortBio: "Won National Film Award for Best Actor for her legendary portrayal of Savitri in 'Mahanati'.",
+        philosophy: "Complete immersion into character research and heritage preservation.",
+        philanthropy: "Supports rural weaver communities in Kerala and Tamil Nadu.",
+        movies: ["Mahanati (2018)", "Saani Kaayidham (2022)", "Dasara (2023)", "Nenu Sailaja (2016)"]
+      },
+      {
+        id: 'anushka-shetty',
+        name: 'Anushka Shetty',
+        category: 'South',
+        title: 'Baahubali Queen Devasena',
+        origin: 'Telugu & Tamil Box Office Titan',
+        netWorth: '$20 Million South Legend',
+        business: 'Yoga Academies & Real Estate Investments',
+        image: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80',
+        quote: "Strength is not physical power; it's an indomitable will.",
+        shortBio: "Immortalized as Queen Devasena in the global blockbuster 'Baahubali' series, holding massive solo box office records.",
+        philosophy: "Inner spiritual stillness, yoga mastery, and royal grace.",
+        philanthropy: "Supports coastal Karnataka educational trusts and yoga therapy centers.",
+        movies: ["Baahubali 2: The Conclusion (2017)", "Arundhati (2009)", "Rudramadevi (2015)", "Size Zero (2015)"]
+      },
+      {
+        id: 'tamannaah-bhatia',
+        name: 'Tamannaah Bhatia',
+        category: 'South',
+        title: 'Milky Beauty & Multi-Lingual Dynamo',
+        origin: 'Pan-Indian Film Star',
+        netWorth: '$16 Million Business Empire',
+        business: 'Wite & Gold Jewelry Line, Startup Angel Investments',
+        image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+        quote: "Adaptability is the secret to surviving in a dynamic world.",
+        shortBio: "Star of over 75 films in Telugu, Tamil, and Hindi, known for magnetic dance numbers and business sense.",
+        philosophy: "Continuous evolution, angel investing, and fitness discipline.",
+        philanthropy: "Campaigns for Beti Bachao Beti Padhao and animal protection.",
+        movies: ["Baahubali: The Beginning (2015)", "Lust Stories 2 (2023)", "Ayan (2009)", "F2: Fun and Frustration (2019)"]
+      },
+      {
+        id: 'rashmika-mandanna',
+        name: 'Rashmika Mandanna',
+        category: 'South',
+        title: 'National Crush & Global Brand Face',
+        origin: 'Kannada, Telugu, Tamil & Hindi Superstar',
+        netWorth: '$10 Million Rising Empire',
+        business: 'Plum Goodness Investor & Luxury Brand Ambassador',
+        image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80',
+        quote: "Spread love so thick that hate has no room to breathe.",
+        shortBio: "Phenomenal rise across 4 film industries, earning the title 'National Crush' and starring in mega-blockbusters.",
+        philosophy: "Positivity, infectious screen energy, and multi-lingual work ethic.",
+        philanthropy: "Funds youth education programs in Coorg and animal welfare.",
+        movies: ["Pushpa: The Rise (2021)", "Animal (2023)", "Geetha Govindam (2018)", "Kirik Party (2016)"]
+      },
+      {
+        id: 'nithya-menen',
+        name: 'Nithya Menen',
+        category: 'South',
+        title: 'National Award Virtuoso',
+        origin: 'Multi-Talented South Icon',
+        netWorth: '$6 Million Independent Artiste',
+        business: 'Independent Music Studio & Sound Design Collaborations',
+        image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80',
+        quote: "Acting is reacting to honest emotional frequencies.",
+        shortBio: "National Award winner for 'Thiruchitrambalam', playback singer, and master of nuanced emotional acting.",
+        philosophy: "Refusing commercial formulas; choosing soulful narrative depth.",
+        philanthropy: "Supports environmental reforestation in Western Ghats.",
+        movies: ["Thiruchitrambalam (2022)", "OK Kanmani (2015)", "Malli Malli Idi Rani Roju (2015)", "Breathe 2 (2020)"]
+      },
+      {
+        id: 'parvathy-thiruvothu',
+        name: 'Parvathy Thiruvothu',
+        category: 'South',
+        title: 'Malayalam Powerhouse & Feminist Voice',
+        origin: 'National Award Special Mention',
+        netWorth: '$5 Million Artiste',
+        business: 'Women in Cinema Collective (WCC) Founding Leadership',
+        image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80',
+        quote: "We don't demand special treatment; we demand equal respect and safety.",
+        shortBio: "Leading voice in Malayalam cinema, celebrated for intense realism and co-founding Women in Cinema Collective.",
+        philosophy: "Systemic reform in film workplaces, fearless artistic choices.",
+        philanthropy: "Key leader in gender equality and pay parity initiatives in South Indian cinema.",
+        movies: ["Take Off (2017)", "Charlie (2015)", "Uyare (2019)", "Qarib Qarib Singlle (2017)"]
+      },
+      {
+        id: 'manju-warrier',
+        name: 'Manju Warrier',
+        category: 'South',
+        title: 'Lady Superstar of Malayalam Cinema',
+        origin: 'Malayalam Cinema Legend',
+        netWorth: '$10 Million Cultural Icon',
+        business: 'Kuchipudi Dance Academies & Adventure Touring Endeavors',
+        image: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80',
+        quote: "Your comeback should be so loud that your past doubts fall silent.",
+        shortBio: "After a 14-year hiatus, made a historic comeback that re-established her as the supreme lead of Malayalam cinema.",
+        philosophy: "Reinvention at any age, motorcycling freedom, and dance classicism.",
+        philanthropy: "Supports housing projects for landless indigenous families in Wayanad.",
+        movies: ["How Old Are You? (2014)", "Lucifer (2019)", "Asuran (2019)", "Kanmadattam (1998)"]
+      },
+      {
+        id: 'revathi',
+        name: 'Revathi',
+        category: 'Classic Icons',
+        title: 'Master Director & Multi-State Titan',
+        origin: 'National Award Winner in Acting & Directing',
+        netWorth: '$8 Million Cultural Legacy',
+        business: 'Mitra Media Production & Autism Spectrum Therapy Trusts',
+        image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+        quote: "Empathy is the core of both acting and directing.",
+        shortBio: "Unique legend who won National Awards for acting and direction ('Mitr, My Friend'), spanning Tamil, Malayalam, Telugu, and Hindi.",
+        philosophy: "Empathetic storytelling, disability awareness, and creative directorial control.",
+        philanthropy: "Works extensively for autism spectrum care and special needs children.",
+        movies: ["Thevar Magan (1992)", "Anjali (1990)", "Margarita with a Straw (2014)", "Mitr, My Friend (2002)"]
+      },
+      {
+        id: 'suchitra-sen',
+        name: 'Suchitra Sen',
+        category: 'Bengali',
+        title: 'Mahanayika - The Supreme Queen of Bengal',
+        origin: 'Bengali & Hindi Cinema Immortal',
+        netWorth: '$20 Million Immortal Heritage',
+        business: 'Cultural Archive & Literary Screen Rights Trust',
+        image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80',
+        quote: "A true queen retains her mystery away from the public gaze.",
+        shortBio: "First Indian actor to win an international award (Moscow International Film Festival 1963). The undisputed 'Mahanayika' of Bengali screen history.",
+        philosophy: "Mystique, uncompromising dignity, and artistic sovereignty.",
+        philanthropy: "Pioneered quiet philanthropic funding for Kolkata artists and hospitals.",
+        movies: ["Deep Jwele Jaai (1959)", "Aandhi (1975)", "Devdas (1955)", "Saptapadi (1961)"]
+      },
+      {
+        id: 'aparna-sen',
+        name: 'Aparna Sen',
+        category: 'Bengali',
+        title: 'Nine-Time National Award Master Director',
+        origin: 'Bengali Cinema Doyen',
+        netWorth: '$12 Million Intellectual House',
+        business: 'Sananda Literary Magazine Leadership & Production',
+        image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+        quote: "Cinema must challenge societal prejudices without losing its poetic humanity.",
+        shortBio: "Legendary actor who became one of India's most celebrated filmmakers, winning 9 National Awards across acting and directing.",
+        philosophy: "Intellectual feminism, humanist storytelling, and editorial leadership.",
+        philanthropy: "Active voice for secularism, literacy, and human rights.",
+        movies: ["36 Chowringhee Lane (1981 Director)", "Paromitar Ek Din (2000)", "Mr. and Mrs. Iyer (2002)", "Memories in March (2010)"]
+      },
+      {
+        id: 'rituparna-sengupta',
+        name: 'Rituparna Sengupta',
+        category: 'Bengali',
+        title: 'National Award Queen of Tollywood',
+        origin: 'Bengali & Hindi Cinema Icon',
+        netWorth: '$10 Million Media Empire',
+        business: 'Bhavna Aaj O Kal Production House, Dance Academies',
+        image: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80',
+        quote: "Relentless work is my meditation; cinema is my religion.",
+        shortBio: "National Award winner for 'Dahan', ruling commercial and parallel Bengali cinema for over two decades with prolific energy.",
+        philosophy: "Work ethic, championing regional technicians, and artistic vitality.",
+        philanthropy: "Supports Thalassemia welfare societies and transgender empowerment in Kolkata.",
+        movies: ["Dahan (1997)", "Belaseshe (2015)", "Rajkahini (2015)", "Main Meri Patni Aur Woh (2005)"]
+      },
+      {
+        id: 'subhashree-ganguly',
+        name: 'Subhashree Ganguly',
+        category: 'Bengali',
+        title: 'Modern Tollywood Empress',
+        origin: 'Commercial & Parallel Bengali Lead',
+        netWorth: '$5 Million Brand Powerhouse',
+        business: 'Fashion Labels & Event Production Studios',
+        image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80',
+        poster: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+        quote: "Growth happens when you step out of your comfort zone into intense drama.",
+        shortBio: "Transitioned from blockbuster commercial dance lead into critically acclaimed dramatic roles in modern Bengali OTT and cinema.",
+        philosophy: "Versatility, fitness transformation, and maternal warmth.",
+        philanthropy: "Supports child health foundations and rural Bengal literacy.",
+        movies: ["Parineeta (2019)", "Indubala Bhaater Hotel (2023)", "Challenge (2009)", "Habji Gabji (2022)"]
+      }
+    ];
+
+    // -------------------------------------------------------------
+    // INTERACTIVE PIPILIKA (ANTS) & RUNNING MICE CANVAS ENGINE
+    // -------------------------------------------------------------
+    const canvas = document.getElementById('interactiveCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    let audioActive = false;
+    let creatureType = 'pipilika'; // 'pipilika' (ant) or 'mouse'
+    let vanquishedCount = 0;
+
+    // Web Audio API Synthesizer
+    let audioCtx = null;
+
+    function playSplatterSound() {
+      if (!audioActive) return;
+      try {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        // Create squishy splash sound synth
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(320, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 0.15);
+        
+        gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.15);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.15);
+      } catch (e) {
+        console.error("Audio synth error", e);
+      }
+    }
+
+    // Creature Class (Pipilika Ant / Running Mouse)
+    class Creature {
+      constructor() {
+        this.reset();
+      }
+
+      reset() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.speed = 1.2 + Math.random() * 2.2;
+        this.angle = Math.random() * Math.PI * 2;
+        this.size = creatureType === 'pipilika' ? 12 : 22;
+        this.alive = true;
+        this.legPhase = 0;
+      }
+
+      update() {
+        if (!this.alive) return;
+
+        // Wander angle smoothly
+        this.angle += (Math.random() - 0.5) * 0.4;
+        this.x += Math.cos(this.angle) * this.speed;
+        this.y += Math.sin(this.angle) * this.speed;
+
+        // Keep inside screen
+        if (this.x < 10) this.angle = 0;
+        if (this.x > width - 10) this.angle = Math.PI;
+        if (this.y < 10) this.angle = Math.PI / 2;
+        if (this.y > height - 10) this.angle = -Math.PI / 2;
+
+        this.legPhase += 0.2;
+      }
+
+      draw() {
+        if (!this.alive) return;
+
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.angle);
+
+        if (creatureType === 'pipilika') {
+          // Draw Pipilika Ant (Ashy Dark Red/Pink Ant)
+          ctx.fillStyle = '#4A252E';
+          // Head
+          ctx.beginPath();
+          ctx.arc(6, 0, 3, 0, Math.PI * 2);
+          ctx.fill();
+          // Thorax
+          ctx.beginPath();
+          ctx.arc(0, 0, 2.5, 0, Math.PI * 2);
+          ctx.fill();
+          // Abdomen
+          ctx.beginPath();
+          ctx.arc(-6, 0, 4, 0, Math.PI * 2);
+          ctx.fill();
+
+          // Antennae
+          ctx.strokeStyle = '#F8C8DC';
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(7, 0);
+          ctx.lineTo(11, -3);
+          ctx.moveTo(7, 0);
+          ctx.lineTo(11, 3);
+          ctx.stroke();
+
+          // Legs moving
+          ctx.strokeStyle = '#A36877';
+          const legMove = Math.sin(this.legPhase) * 3;
+          ctx.beginPath();
+          ctx.moveTo(0, 0); ctx.lineTo(-2 + legMove, -6);
+          ctx.moveTo(0, 0); ctx.lineTo(-2 - legMove, 6);
+          ctx.moveTo(-3, 0); ctx.lineTo(-6 - legMove, -5);
+          ctx.moveTo(-3, 0); ctx.lineTo(-6 + legMove, 5);
+          ctx.stroke();
+
+        } else {
+          // Draw Small Running Mouse
+          ctx.fillStyle = '#64748B';
+          // Body
+          ctx.beginPath();
+          ctx.ellipse(0, 0, 10, 6, 0, 0, Math.PI * 2);
+          ctx.fill();
+          // Head
+          ctx.beginPath();
+          ctx.arc(8, 0, 4, 0, Math.PI * 2);
+          ctx.fill();
+          // Pink Nose
+          ctx.fillStyle = '#F8C8DC';
+          ctx.beginPath();
+          ctx.arc(12, 0, 1.5, 0, Math.PI * 2);
+          ctx.fill();
+          // Ears
+          ctx.beginPath();
+          ctx.arc(6, -4, 2.5, 0, Math.PI * 2);
+          ctx.arc(6, 4, 2.5, 0, Math.PI * 2);
+          ctx.fill();
+          // Tail
+          ctx.strokeStyle = '#F8C8DC';
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.moveTo(-10, 0);
+          ctx.quadraticCurveTo(-16, Math.sin(this.legPhase) * 4, -20, Math.cos(this.legPhase) * 3);
+          ctx.stroke();
+        }
+
+        ctx.restore();
+      }
+    }
+
+    // Green Blood Splatter Particle
+    class SplatterParticle {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.vx = (Math.random() - 0.5) * 8;
+        this.vy = (Math.random() - 0.5) * 8;
+        this.radius = 2 + Math.random() * 5;
+        this.alpha = 1;
+        this.color = Math.random() > 0.3 ? '#22C55E' : '#4ADE80'; // Vivid Green Blood
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.vx *= 0.92;
+        this.vy *= 0.92;
+        this.alpha -= 0.02;
+      }
+
+      draw() {
+        if (this.alpha <= 0) return;
+        ctx.save();
+        ctx.globalAlpha = this.alpha;
+        ctx.fillStyle = this.color;
+        ctx.shadowColor = '#22C55E';
+        ctx.shadowBlur = 10;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    // Permanent Green Stain on Screen
+    class GreenStain {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.radius = 12 + Math.random() * 10;
+        this.points = [];
+        for (let i = 0; i < 8; i++) {
+          const angle = (i / 8) * Math.PI * 2;
+          const r = this.radius * (0.6 + Math.random() * 0.8);
+          this.points.push({ x: Math.cos(angle) * r, y: Math.sin(angle) * r });
+        }
+      }
+
+      draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.fillStyle = 'rgba(34, 197, 94, 0.45)';
+        ctx.beginPath();
+        ctx.moveTo(this.points[0].x, this.points[0].y);
+        for (let i = 1; i < this.points.length; i++) {
+          ctx.lineTo(this.points[i].x, this.points[i].y);
+        }
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    // Initialize Creatures & Arrays
+    const creatures = Array.from({ length: 18 }, () => new Creature());
+    let splatterParticles = [];
+    let greenStains = [];
+
+    // Animation Loop
+    function animateCanvas() {
+      ctx.clearRect(0, 0, width, height);
+
+      // Draw Green Stains
+      greenStains.forEach(stain => stain.draw());
+
+      // Update & Draw Creatures
+      creatures.forEach(c => {
+        c.update();
+        c.draw();
+      });
+
+      // Update & Draw Splatters
+      splatterParticles = splatterParticles.filter(p => p.alpha > 0);
+      splatterParticles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+
+      requestAnimationFrame(animateCanvas);
+    }
+    animateCanvas();
+
+    // Canvas Click Event (Squish Pipilika / Mouse -> Green Blood Splatter)
+    canvas.addEventListener('click', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const clickY = e.clientY - rect.top;
+
+      let hit = false;
+      creatures.forEach(c => {
+        if (!c.alive) return;
+        const dist = Math.hypot(c.x - clickX, c.y - clickY);
+        if (dist < c.size + 15) {
+          c.alive = false;
+          hit = true;
+          vanquishedCount++;
+          document.getElementById('splatterCount').innerText = vanquishedCount;
+
+          playSplatterSound();
+
+          // Create Green Blood Particles
+          for (let i = 0; i < 25; i++) {
+            splatterParticles.push(new SplatterParticle(c.x, c.y));
+          }
+          // Permanent Stain
+          greenStains.push(new GreenStain(c.x, c.y));
+
+          // Respawn creature after delay
+          setTimeout(() => c.reset(), 3000);
+        }
+      });
+    });
+
+    // Control Functions
+    function toggleAudio() {
+      audioActive = !audioActive;
+      document.getElementById('audioStatusText').innerText = audioActive ? 'Feel Mic: ACTIVE' : 'Feel Mic: OFF';
+      const icon = document.getElementById('audioIcon');
+      icon.className = audioActive ? 'fa-solid fa-volume-high text-havenyellow-400' : 'fa-solid fa-volume-xmark text-havenyellow-400';
+    }
+
+    function toggleCreatureType() {
+      creatureType = creatureType === 'pipilika' ? 'mouse' : 'pipilika';
+      document.getElementById('creatureTypeText').innerText = creatureType === 'pipilika' ? 'Touch: Running Pipilikas (Ants)' : 'Touch: Running Mice';
+      creatures.forEach(c => c.reset());
+    }
+
+    function spawnMoreCreatures(num) {
+      for (let i = 0; i < num; i++) {
+        creatures.push(new Creature());
+      }
+    }
+
+    // -------------------------------------------------------------
+    // ACTOR GRID & MODAL VIEW LOGIC
+    // -------------------------------------------------------------
+    let currentCategory = 'all';
+
+    function renderActors(filterText = '') {
+      const grid = document.getElementById('actorGrid');
+      grid.innerHTML = '';
+
+      const filtered = actorsData.filter(a => {
+        const matchesCategory = currentCategory === 'all' || a.category === currentCategory;
+        const matchesSearch = a.name.toLowerCase().includes(filterText.toLowerCase()) ||
+                              a.title.toLowerCase().includes(filterText.toLowerCase()) ||
+                              a.business.toLowerCase().includes(filterText.toLowerCase()) ||
+                              a.movies.some(m => m.toLowerCase().includes(filterText.toLowerCase()));
+        return matchesCategory && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full py-16 text-center text-slate-400 glass-haven rounded-3xl">
+            <i class="fa-solid fa-crown text-4xl text-havenyellow-500 mb-4 block"></i>
+            <p class="text-xl font-cinzel text-slate-200">No brilliant actor found matching your query.</p>
+            <p class="text-sm text-slate-400 mt-2">Adjust your category filter or search terms.</p>
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach(actor => {
+        const card = document.createElement('div');
+        card.className = 'glass-actor-card rounded-3xl overflow-hidden flex flex-col justify-between relative group shadow-xl';
+        card.innerHTML = `
+          <!-- Image Header -->
+          <div class="relative h-72 overflow-hidden">
+            <img src="${actor.image}" alt="${actor.name}" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+            
+            <span class="absolute top-3 right-3 bg-slate-950/80 backdrop-blur-md text-havenyellow-400 border border-havenyellow-500/30 text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-wider">
+              ${actor.category}
+            </span>
+
+            <div class="absolute bottom-3 left-4 right-4">
+              <span class="text-[11px] text-ashypink-300 font-cinzel uppercase tracking-widest block font-semibold">${actor.origin}</span>
+              <h3 class="text-xl font-extrabold font-cinzel text-slate-100 group-hover:text-havenyellow-400 transition-colors">${actor.name}</h3>
+            </div>
+          </div>
+
+          <!-- Card Body -->
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
+            <div>
+              <p class="text-[11px] font-bold text-ashypink-400 uppercase tracking-wider mb-1">${actor.title}</p>
+              <p class="text-slate-300 text-xs line-clamp-2 font-light leading-relaxed">${actor.shortBio}</p>
+            </div>
+
+            <!-- Net Worth / Empire Badge -->
+            <div class="p-2.5 rounded-xl bg-slate-950/60 border border-ashypink-400/20 text-xs text-havenyellow-300 font-medium flex items-center justify-between">
+              <span><i class="fa-solid fa-vault text-havenyellow-400 mr-1.5"></i>Empire:</span>
+              <strong class="text-slate-100 font-bold">${actor.netWorth}</strong>
+            </div>
+
+            <button onclick="openModal('${actor.id}')" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-ashypink-700/40 to-ashypink-900/60 hover:from-havenyellow-500 hover:to-havenyellow-600 hover:text-slate-950 text-ashypink-300 font-extrabold text-xs tracking-wider uppercase transition-all duration-300 border border-ashypink-400/30 flex items-center justify-center gap-2 shadow-md">
+              <span>Explore Empire & Detail</span>
+              <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function filterCategory(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('bg-havenyellow-500', 'text-slate-950', 'font-extrabold', 'shadow-yellow-glow');
+        btn.classList.add('bg-slate-900/80', 'text-slate-200');
+      });
+
+      event.target.classList.remove('bg-slate-900/80', 'text-slate-200');
+      event.target.classList.add('bg-havenyellow-500', 'text-slate-950', 'font-extrabold', 'shadow-yellow-glow');
+
+      renderActors(document.getElementById('searchInput').value);
+    }
+
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      renderActors(e.target.value);
+    });
+
+    function openModal(id) {
+      const actor = actorsData.find(a => a.id === id);
+      if (!actor) return;
+
+      const modal = document.getElementById('detailModal');
+      const modalContent = document.getElementById('modalContent');
+
+      modalContent.innerHTML = `
+        <!-- Modal Top Hero -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 bg-slate-950/80 p-6 rounded-2xl border border-ashypink-400/30">
+          <div class="relative h-80 rounded-xl overflow-hidden shadow-2xl md:col-span-1">
+            <img src="${actor.image}" alt="${actor.name}" class="w-full h-full object-cover">
+            <div class="absolute bottom-3 left-3 bg-havenyellow-500 text-slate-950 font-bold text-xs px-3 py-1 rounded-full uppercase">
+              Actor & Empire Queen
+            </div>
+          </div>
+          
+          <div class="md:col-span-2 space-y-4">
+            <div>
+              <span class="text-xs text-ashypink-400 font-cinzel uppercase tracking-widest block font-bold">${actor.origin}</span>
+              <h2 class="text-3xl sm:text-4xl font-extrabold font-cinzel text-slate-100">${actor.name}</h2>
+              <p class="text-havenyellow-400 text-sm font-semibold">${actor.title}</p>
+            </div>
+            
+            <p class="text-slate-300 text-sm leading-relaxed font-light">${actor.shortBio}</p>
+
+            <div class="p-4 rounded-xl bg-slate-900/90 border-l-4 border-havenyellow-500 text-ashypink-300 italic font-serif text-sm">
+              "${actor.quote}"
+            </div>
+          </div>
+        </div>
+
+        <!-- Detail Breakdown Tabs -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          
+          <!-- Financial & Business Empire -->
+          <div class="p-5 rounded-2xl bg-slate-950/70 border border-ashypink-400/20 space-y-3">
+            <h3 class="text-base font-cinzel font-bold text-havenyellow-400 flex items-center gap-2">
+              <i class="fa-solid fa-briefcase"></i> Business Empire & Ventures
+            </h3>
+            <p class="text-xs text-slate-300 leading-relaxed font-light">${actor.business}</p>
+            <div class="pt-2 text-xs text-ashypink-300">
+              <strong>Estimated Net Worth:</strong> ${actor.netWorth}
+            </div>
+          </div>
+
+          <!-- Philanthropy -->
+          <div class="p-5 rounded-2xl bg-slate-950/70 border border-ashypink-400/20 space-y-3">
+            <h3 class="text-base font-cinzel font-bold text-havenyellow-400 flex items-center gap-2">
+              <i class="fa-solid fa-hand-holding-heart"></i> Philanthropy & Noble Causes
+            </h3>
+            <p class="text-xs text-slate-300 leading-relaxed font-light">${actor.philanthropy}</p>
+          </div>
+
+          <!-- Philosophical Viewpoint -->
+          <div class="p-5 rounded-2xl bg-slate-950/70 border border-ashypink-400/20 space-y-3 sm:col-span-2">
+            <h3 class="text-base font-cinzel font-bold text-havenyellow-400 flex items-center gap-2">
+              <i class="fa-solid fa-feather-pointed"></i> Artistic & Life Philosophy
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-light">${actor.philosophy}</p>
+          </div>
+
+          <!-- Filmography -->
+          <div class="p-5 rounded-2xl bg-slate-950/70 border border-ashypink-400/20 space-y-3 sm:col-span-2">
+            <h3 class="text-base font-cinzel font-bold text-havenyellow-400 flex items-center gap-2">
+              <i class="fa-solid fa-film"></i> Iconic Masterpieces & Key Filmography
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              ${actor.movies.map(m => `
+                <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center gap-3">
+                  <i class="fa-solid fa-star text-havenyellow-400 text-xs"></i>
+                  <span class="text-xs text-slate-200 font-semibold">${m}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('detailModal');
+      modal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+
+    window.addEventListener('click', (e) => {
+      const modal = document.getElementById('detailModal');
+      if (e.target === modal) closeModal();
+    });
+
+    // Initialize Page
+    window.onload = function() {
+      renderActors();
+    };
+  </script>
+</body>
+</html>
